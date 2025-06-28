@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rainy Day Smiles for Chayana</title>
+  <!-- Tailwind CSS for GitHub Pages (No CDN Compilation Needed) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(to bottom, #cbd5e1, #f1f5f9);
+      animation: rain 0.5s linear infinite;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+
+    .raindrop {
+      position: absolute;
+      width: 2px;
+      height: 10px;
+      background: #60a5fa;
+      animation: drop 1s linear infinite;
+    }
+
+    @keyframes drop {
+      0% {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+    }
+
+    .button-53 {
+      background-color: #3DD1E7;
+      border: 0 solid #E5E7EB;
+      box-sizing: border-box;
+      color: #000000;
+      display: flex;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      justify-content: center;
+      line-height: 1.75rem;
+      padding: .75rem 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+      max-width: 90vw;
+      cursor: pointer;
+      transform: rotate(-2deg);
+      user-select: none;
+      touch-action: manipulation;
+      position: relative;
+    }
+
+    .button-53:focus {
+      outline: 0;
+    }
+
+    .button-53:after {
+      content: '';
+      position: absolute;
+      border: 1px solid #000000;
+      bottom: 4px;
+      left: 4px;
+      width: calc(100% - 1px);
+      height: calc(100% - 1px);
+    }
+
+    .button-53:hover:after {
+      bottom: 2px;
+      left: 2px;
+    }
+
+    @media (min-width: 768px) {
+      .button-53 {
+        padding: .75rem 3rem;
+        font-size: 1.25rem;
+        max-width: 460px;
+      }
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen text-center p-4 relative overflow-hidden">
+
+  <!-- Audio (will play on button click) -->
+  <audio id="bgAudio" preload="auto">
+    <source src="https://www.soundjay.com/nature/sounds/rain-01.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Content Container -->
+  <div class="w-full max-w-xl px-4 sm:px-6 md:px-8">
+
+    <!-- Header -->
+    <h1 class="text-3xl md:text-5xl font-bold mb-4 text-blue-700">☔ Rainy Day Smiles for Chayana ☀️</h1>
+    <p class="text-lg mb-6 text-gray-600 pb-5">Not even the monsoon can match the magic of Chayana’s smile.</p>
+
+    <!-- Image -->
+    <img src="https://cdnb.artstation.com/p/assets/images/images/070/190/723/original/rituporna-gogoi-plane-and-umbrella.gif?1701953109"
+     alt="Dancing Character"
+     class="block mx-auto w-32 sm:w-40 h-auto object-contain mb-4 animate-bounce rounded-xl max-w-full" />
+
+    <!-- Joke Button -->
+    <button class="button-53" role="button" onclick="playAndShowJoke()">Click me for a fresh mood in clumsy weather!</button>
+
+    <!-- Joke Display -->
+    <p id="joke" class="text-xl text-purple-600 font-semibold min-h-[3rem] px-2"></p>
+
+    <!-- Footer -->
+    <footer class="mt-10 text-gray-400 text-sm">Made with ☔, ❤️, and 100% Chayana-proof laughter 💛</footer>
+  </div>
+
+  <!-- JavaScript for interactivity -->
+  <script>
+    const jokes = [
+      "Even grounded skies can’t ground your smile, Chayana!",
+      "Rain may delay flights, but never Chayana’s sparkle.",
+      "Cabin lights off, but Chayana’s joy is always on.",
+      "No flight today? No problem. Let happiness board first, Chayana!",
+      "Dear Chayana, this rainy runway is just a runway to your smile.",
+      "When clouds cry, let Chayana fly… with laughter!",
+      "Coffee’s hot, planes are not — time to lift off in smiles, Chayana!",
+      "Weather grounded the flight, but your happiness is cleared for takeoff.",
+      "From apron to joy-zone — today we fly smiles for Chayana!",
+      "The weather said delay, but happiness for Chayana is always on time.",
+      "Don't worry if you feel lazy, even the sky isn't working today."
+    ];
+
+    const audio = document.getElementById("bgAudio");
+
+    function playAndShowJoke() {
+      if (audio.paused) {
+        audio.play().catch(err => console.log("Audio autoplay blocked: ", err));
+      }
+      const joke = jokes[Math.floor(Math.random() * jokes.length)];
+      document.getElementById("joke").textContent = joke;
+    }
+
+    // Create falling raindrops
+    for (let i = 0; i < 30; i++) {
+      const drop = document.createElement("div");
+      drop.className = "raindrop";
+      drop.style.left = Math.random() * 100 + "vw";
+      drop.style.animationDelay = Math.random() + "s";
+      drop.style.animationDuration = (0.5 + Math.random()) + "s";
+      document.body.appendChild(drop);
+    }
+  </script>
+</body>
+</html>
